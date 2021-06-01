@@ -1,0 +1,14 @@
+﻿<li>@Html.ActionLink("MENU", "Menu", "Meals") </li>
+@if (!User.IsInRole("admin"))
+{
+    <li>@Html.ActionLink("RESERVE TABLE", "Reserve", "Reservations") </li>
+    <li>@Html.ActionLink("CONCTACT", "Contact", "Messages")</li>
+    <li>@Html.ActionLink("SHOPPING CART", "Index", "ShoppingCart")</li>
+}
+else
+{
+    <li>@Html.ActionLink("ADD MEAL", "Add", "Meals") </li>
+    <li>@Html.ActionLink("INBOX", "Index", "Messages") </li>
+    <li>@Html.ActionLink("ORDERS", "Index", "Orders") </li>
+    <li>@Html.ActionLink("RESERVATIONS", "Index", "Reservations") </li>
+}

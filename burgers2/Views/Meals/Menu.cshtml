@@ -1,0 +1,227 @@
+﻿@{
+    Layout = "~/Views/Shared/Layout - home.cshtml";
+}
+
+
+@model IEnumerable<burgers2.Models.Meal>
+
+@{
+    ViewBag.Title = "Menu";
+
+}
+<div class="row">
+
+
+
+</div>
+
+@if (TempData["Alert"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Alert"]
+        
+    </div>
+}
+
+
+
+
+<section>
+    <div class="container menu">
+        <div class="heading">
+            <img class="heading-img" src="~/Content/Images/heading_logo.png" alt="">
+            <h2>Menu</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="  selecton brdr-b-primary mb-70">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#all">All</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#burgers">BURGERS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#fries">FRIES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#salads">SALADS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#desserts">DESSERTS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#deleted">deleted</a>
+                    </li>
+                </ul>
+            </div>
+            <!--col-sm-12-->
+        </div>
+        <!--row-->
+
+        <div class="row">
+
+
+
+
+
+            <div class="tab-content">
+                <div id="all" class="container tab-pane active">
+
+
+                    @foreach (var meal in Model.Where(m => m.Deleted == false))
+                    {
+
+                        <a href="@Url.Action("Single", new {Id=meal.Id })">
+                            <div class="col-md-6 food-menu pizza">
+
+                                <div class="sided-90x mb-30 ">
+                                    <div class="s-left"><img class="br-3" src="~/UploadedFiles/@meal.pictureUrl" alt="Menu Image"></div>
+                                    <!--s-left-->
+                                    <div class="s-right">
+
+                                        <h5 class="mb-10">
+
+                                            <b>@meal.Name</b>
+
+                                            <b class="color-primary float-right">R @meal.Price</b>
+                                        </h5>
+
+
+                                        <p class="pr-70"> @meal.Name Maecenas fermentum tortor id fringilla molestie. In hac habitasse platea dictumst</p>
+
+
+                                    </div>
+                                    <!--s-right-->
+                                </div><!-- sided-90x -->
+                            </div><!-- food-menu -->
+                        </a>
+                    }
+
+
+
+                </div>
+
+
+
+                <div id="burgers" class="container tab-pane fade">
+                    @foreach (var meal in Model.Where(m => m.Category.Id == 1 && m.Deleted == false))
+                    {
+                        <a href="@Url.Action("Single", new {Id=meal.Id })">
+
+                            <div class="col-md-6 food-menu pizza">
+                                <div class="sided-90x mb-30 ">
+                                    <div class="s-left"><img class="br-3" src="~/UploadedFiles/@meal.pictureUrl" alt="Menu Image"></div>
+                                    <!--s-left-->
+                                    <div class="s-right">
+                                        <h5 class="mb-10"><b>@meal.Name</b><b class="color-primary float-right">R @meal.Price</b></h5>
+                                        <p class="pr-70"> @meal.Name Maecenas fermentum tortor id fringilla molestie. In hac habitasse platea dictumst</p>
+                                    </div>
+                                    <!--s-right-->
+                                </div><!-- sided-90x -->
+                            </div><!-- food-menu -->
+                        </a>
+                    }
+                </div>
+
+
+
+
+                <div id="fries" class="container tab-pane fade">
+                    @foreach (var meal in Model.Where(m => m.Category.Id == 2 && m.Deleted == false))
+                    {
+                        <a href="@Url.Action("Single", new {Id=meal.Id })">
+
+                            <div class="col-md-6 food-menu pizza">
+                                <div class="sided-90x mb-30 ">
+                                    <div class="s-left"><img class="br-3" src="~/UploadedFiles/@meal.pictureUrl" alt="Menu Image"></div>
+                                    <!--s-left-->
+                                    <div class="s-right">
+                                        <h5 class="mb-10"><b>@meal.Name</b><b class="color-primary float-right">R @meal.Price</b></h5>
+                                        <p class="pr-70"> @meal.Name Maecenas fermentum tortor id fringilla molestie. In hac habitasse platea dictumst</p>
+                                    </div>
+                                    <!--s-right-->
+                                </div><!-- sided-90x -->
+                            </div><!-- food-menu -->
+                        </a>
+                    }
+                </div>
+
+
+                <div id="salads" class="container tab-pane fade">
+                    @foreach (var meal in Model.Where(m => m.Category.Id == 3 && m.Deleted == false))
+                    {
+
+                        <a href="@Url.Action("Single", new {Id=meal.Id })">
+                            <div class="col-md-6 food-menu pizza">
+                                <div class="sided-90x mb-30 ">
+                                    <div class="s-left"><img class="br-3" src="~/UploadedFiles/@meal.pictureUrl" alt="Menu Image"></div>
+                                    <!--s-left-->
+                                    <div class="s-right">
+                                        <h5 class="mb-10"><b>@meal.Name</b><b class="color-primary float-right">R @meal.Price</b></h5>
+                                        <p class="pr-70"> @meal.Name Maecenas fermentum tortor id fringilla molestie. In hac habitasse platea dictumst</p>
+                                    </div>
+                                    <!--s-right-->
+                                </div><!-- sided-90x -->
+                            </div><!-- food-menu -->
+                        </a>
+                    }
+                </div>
+
+                <div id="desserts" class="container tab-pane fade">
+                    @foreach (var meal in Model.Where(m => m.Category.Id == 4 && m.Deleted == false))
+                    {
+
+                        <a href="@Url.Action("Single", new {Id=meal.Id })">
+                            <div class="col-md-6 food-menu pizza">
+                                <div class="sided-90x mb-30 ">
+                                    <div class="s-left"><img class="br-3" src="~/UploadedFiles/@meal.pictureUrl" alt="Menu Image"></div>
+                                    <!--s-left-->
+                                    <div class="s-right">
+                                        <h5 class="mb-10"><b>@meal.Name</b><b class="color-primary float-right">R @meal.Price</b></h5>
+                                        <p class="pr-70"> @meal.Name Maecenas fermentum tortor id fringilla molestie. In hac habitasse platea dictumst</p>
+                                    </div>
+                                    <!--s-right-->
+                                </div><!-- sided-90x -->
+                            </div><!-- food-menu -->
+                        </a>
+                    }
+                </div>
+
+                <div id="deleted" class="container tab-pane fade">
+                    @foreach (var meal in Model.Where(m => m.Deleted == true))
+                    {
+
+                        <a href="@Url.Action("Single", new {Id=meal.Id })">
+                            <div class="col-md-6 food-menu pizza">
+                                <div class="sided-90x mb-30 ">
+                                    <div class="s-left"><img class="br-3" src="~/UploadedFiles/@meal.pictureUrl" alt="Menu Image"></div>
+                                    <!--s-left-->
+                                    <div class="s-right">
+                                        <h5 class="mb-10"><b>@meal.Name</b><b class="color-primary float-right">R @meal.Price</b></h5>
+                                        <p class="pr-70"> @meal.Name Maecenas fermentum tortor id fringilla molestie. In hac habitasse platea dictumst</p>
+                                    </div>
+                                    <!--s-right-->
+                                </div><!-- sided-90x -->
+                            </div><!-- food-menu -->
+                        </a>
+                    }
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+        </div><!-- row -->
+
+
+    </div><!-- container -->
+</section>

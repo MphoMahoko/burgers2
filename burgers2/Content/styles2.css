@@ -1,0 +1,103 @@
+.heading {
+
+    margin-bottom: 0;
+
+}
+
+section {
+
+    padding: 0;
+
+}
+
+
+.heading {
+    margin-bottom: 0;
+
+}
+
+.bg-1 {
+
+    background: url(/Content/Images/slider_1_1920_1200.jpg) no-repeat center;
+    background-size: auto;
+    background-size: cover;
+
+}
+.smollo {
+    background: url(/Content/Images/slider_3_1920_600.jpg) no-repeat center;
+    background-size: auto;
+    background-size: cover;
+    height: 400px !important;
+}
+
+
+
+.img-thumbnail {
+    height: 110px;
+}
+
+.single-order {
+
+    background-color: #F9F9F9;
+    padding: 10px;
+
+}
+
+.single-order img {
+    border-color: pink;
+    border: solid;
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    border: 0.4px;
+
+}
+
+.single-order .date {
+
+    font-weight: bold;
+    font-size: large;
+
+}
+
+.error-msg {
+    color: red;
+}
+
+.food-menu {
+    display: flex;
+}
+
+header a {
+    display: block;
+}
+
+
+.footer a {
+    display:inline-block;
+}
+
+.menu a, button {
+    display: block;
+}
+
+.img-thumbnail {
+    height: 110px;
+    width: 110px;
+}
+
+.cart-img {
+
+    height: 110px;
+    width: 110px;
+}
+.text-limit {
+    
+}
+
+
+.field-validation-error {
+    color: red;
+}
+
+

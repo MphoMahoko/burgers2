@@ -1,0 +1,58 @@
+﻿@model burgers2.Models.Message
+
+@{
+    ViewBag.Title = "Message";
+}
+
+
+<section class="story-area left-text center-sm-text">
+    <div class="container">
+        <div class="heading">
+            <div class="heading">
+                <img class="heading-img" src="~/Content/Images/heading_logo.png" alt="">
+                <h2>Contact Us</h2>
+            </div>
+            <h5 class="mt-10 mb-30">Say hello, send us a message</h5>
+            <p class="mx-w-700x mlr-auto">
+                Proin dictum viverra varius. Etiam vulputate libero dui, at pretium
+                elit elementum quis. Enean porttitor eros non ultrices convallis.
+                Vivamus quis dolor ut arcu lobortis finibus a vitae leo. Sed eget tempus sem.
+                Nullam sed lacus sed metus tincidunt lobortis lobortis at nibh. Morbi euismod, arcu in gravida rhoncus
+            </p>
+        </div>
+
+            @using (Html.BeginForm("Contact","Messages"))
+            {
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.ValidationMessageFor(m => m.Name)
+                        @Html.TextBoxFor(m => m.Name, new { @class = "mb-20 form-control", type = "text", placeholder = "Name" })
+
+                    </div>
+                    <div class="col-md-6">
+                        @Html.ValidationMessageFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email, new { @class = "mb-20 form-control", type = "text", placeholder = "Email" })
+
+                    </div>
+                    <div class="col-md-12">
+                        @Html.ValidationMessageFor(m => m.Subject)
+                        @Html.TextBoxFor(m => m.Subject, new { @class = "mb-20 form-control", type = "text", placeholder = "Subject" })
+
+                    </div>
+                    <div class="col-md-12">
+                        @Html.ValidationMessageFor(m => m.TheMessage, "", new {@style="color:red" })
+                        @Html.TextAreaFor(m => m.TheMessage, new { @class = "mb-20 form-control", row = 5, type = "text", placeholder = "Message" })
+
+                    </div>
+                </div><!-- row -->
+
+                    <button class="btn-primaryc plr-25">Submit</button>
+
+
+            }
+
+    </div><!-- container -->
+</section>
+
+
+

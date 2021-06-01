@@ -1,0 +1,200 @@
+﻿
+@model IEnumerable<burgers2.Models.Reservation>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<section>
+    <div class="container menu">
+        <div class="heading">
+            <img class="heading-img" src="~/Content/Images/heading_logo.png" alt="">
+            <h2>Reservations</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="  selecton brdr-b-primary mb-70">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#all">All</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#today">Today</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#future">Future</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#expired">Expired</a>
+                    </li>
+
+
+                </ul>
+            </div>
+            <!--col-sm-12-->
+        </div>
+        <!--row-->
+
+        <div class="row">
+
+            <div class="tab-content">
+                <div id="all" class="container tab-pane active">
+
+
+                    <div class="row">
+
+                        <table class="table table-bordered  ">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Number of people</th>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Phone</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var reservation in Model)
+                                {
+                                    <tr>
+                                        <th scope="row">@reservation.Date.ToString("dd MMM yyyy") </th>
+                                        <td>@reservation.NumberPeople</td>
+                                        <td>@reservation.Time</td>
+                                        <td>@reservation.Phone</td>
+
+                                    </tr>
+                                }
+
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+                </div>
+
+                <div id="today" class="container tab-pane">
+
+
+                    <div class="row">
+
+                        <table class="table table-bordered  ">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Number of people</th>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Phone</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var reservation in Model.Where(m=>m.Date.ToString("dd MM") == DateTime.Now.ToString("dd MM")))
+                                {
+                                    <tr>
+                                        <th scope="row">@reservation.Date.ToString("dd MMM yyyy") </th>
+                                        <td>@reservation.NumberPeople</td>
+                                        <td>@reservation.Time</td>
+                                        <td>@reservation.Phone</td>
+
+                                    </tr>
+                                }
+
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+                </div>
+
+                <div id="future" class="container tab-pane ">
+
+
+                    <div class="row">
+
+                        <table class="table table-bordered  ">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Number of people</th>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Phone</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var reservation in Model.Where(m => m.Date > DateTime.Now))
+                                {
+                                    <tr>
+                                        <th scope="row">@reservation.Date.ToString("dd MMM yyyy") </th>
+                                        <td>@reservation.NumberPeople</td>
+                                        <td>@reservation.Time</td>
+                                        <td>@reservation.Phone</td>
+
+                                    </tr>
+                                }
+
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+                </div>
+
+                <div id="expired" class="container tab-pane ">
+
+
+                    <div class="row">
+
+                        <table class="table table-bordered  ">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Number of people</th>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Phone</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var reservation in Model.Where(m => m.Date < DateTime.Now))
+                                {
+                                    <tr>
+                                        <th scope="row">@reservation.Date.ToString("dd MMM yyyy") </th>
+                                        <td>@reservation.NumberPeople</td>
+                                        <td>@reservation.Time</td>
+                                        <td>@reservation.Phone</td>
+
+                                    </tr>
+                                }
+
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+
+        </div><!-- row -->
+
+
+    </div><!-- container -->
+</section>

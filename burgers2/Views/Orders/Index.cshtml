@@ -1,0 +1,363 @@
+﻿@model IEnumerable<burgers2.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<section class="story-area left-text center-sm-text pos-relative">
+    <div class="abs-tbl bg-2 w-20 z--1 dplay-md-none"></div>
+    <div class="abs-tbr bg-3 w-20 z--1 dplay-md-none"></div>
+    <div class="container">
+       
+    </div><!-- container -->
+</section>
+
+<section>
+    <div class="container menu">
+
+
+        @if (User.IsInRole("admin"))
+        {
+            <div class="heading">
+                <img class="heading-img" src="images/heading_logo.png" alt="">
+                <h2>Orders</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="  selecton brdr-b-primary mb-70">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#all">All</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#new">New</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#processing">Processing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#cancelled">Cancelled</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#completed">Completed</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!--col-sm-12-->
+            </div>
+
+            <div class="row">
+
+                <div class="tab-content">
+                    <div id="all" class="container tab-pane active">
+
+
+                        <div class="row">
+
+                            <table class="table table-bordered  ">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var order in Model)
+                                    {
+                                        <tr>
+                                            <th scope="row"> @order.Date.ToString("dd MMM yy")</th>
+                                            <td>
+                                                <div class="alert alert-primary" role="alert">
+                                                    @order.Status
+                                                </div>
+                                            </td>
+                                            <td>@order.Address1</td>
+                                            <td>@order.Total</td>
+                                            <td>@order.Phone</td>
+                                            <td>
+                                                <div class="">
+
+
+                                                    @Html.ActionLink("complete", "Complete", new { id = order.Id }, new { @class = "btn btn-success form-control", @type = "button" })
+                                                    @Html.ActionLink("process", "Process", new { id = order.Id }, new { @class = "btn btn-warning form-control", @type = "button" })
+                                                    @Html.ActionLink("cancel", "Cancel", new { id = order.Id }, new { @class = "btn btn-danger form-control", @type = "button" })
+                                                    @Html.ActionLink("View", "Orderdetails", new { id = order.Id }, new { @class = "btn btn-default form-control", @type = "button" })
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                    <div id="processing" class="container tab-pane fade">
+
+                        <div class="row">
+
+                            <table class="table table-bordered  ">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var order in Model.Where(o => o.Status == "process"))
+                                    {
+                                        <tr>
+                                            <th scope="row"> @order.Date.ToString("dd MMM yy")</th>
+                                            <td>
+                                                <div class="alert alert-primary" role="alert">
+                                                    @order.Status
+                                                </div>
+                                            </td>
+                                            <td>@order.Address1</td>
+                                            <td>@order.Total</td>
+                                            <td>@order.Phone</td>
+                                            <td>
+                                                <div class="">
+                                                    @Html.ActionLink("complete", "Complete", new { id = order.Id }, new { @class = "btn btn-success form-control", @type = "button" })
+                                                    @Html.ActionLink("process", "Process", new { id = order.Id }, new { @class = "btn btn-warning form-control", @type = "button" })
+                                                    @Html.ActionLink("cancel", "Cancel", new { id = order.Id }, new { @class = "btn btn-danger form-control", @type = "button" })
+                                                    @Html.ActionLink("View", "Orderdetails", new { id = order.Id }, new { @class = "btn btn-default form-control", @type = "button" })
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                    <div id="cancelled" class="container tab-pane fade">
+                        cancelled cancelled cancelled
+                        <div class="row">
+
+                            <table class="table table-bordered  ">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var order in Model.Where(o => o.Status == "cancel"))
+                                    {
+                                        <tr>
+                                            <th scope="row"> @order.Date.ToString("dd MMM yy")</th>
+                                            <td>
+                                                <div class="alert alert-primary" role="alert">
+                                                    @order.Status
+                                                </div>
+                                            </td>
+                                            <td>@order.Address1</td>
+                                            <td>@order.Total</td>
+                                            <td>@order.Phone</td>
+                                            <td>
+                                                <div class="">
+                                                    @Html.ActionLink("complete", "Complete", new { id = order.Id }, new { @class = "btn btn-success form-control", @type = "button" })
+                                                    @Html.ActionLink("process", "Process", new { id = order.Id }, new { @class = "btn btn-warning form-control", @type = "button" })
+                                                    @Html.ActionLink("cancel", "Cancel", new { id = order.Id }, new { @class = "btn btn-danger form-control", @type = "button" })
+                                                    @Html.ActionLink("View", "Orderdetails", new { id = order.Id }, new { @class = "btn btn-default form-control", @type = "button" })
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                    <div id="completed" class="container tab-pane fade">
+                        completed completed completed
+                        <div class="row">
+
+                            <table class="table table-bordered  ">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var order in Model.Where(o => o.Status == "complete"))
+                                    {
+                                        <tr>
+                                            <th scope="row">
+                                                @order.Date.ToString("dd MMM yy")
+                                            </th>
+                                            <td>
+                                                <div class="alert alert-primary" role="alert">
+                                                    @order.Status
+                                                </div>
+                                            </td>
+                                            <td>@order.Address1</td>
+                                            <td>@order.Total</td>
+                                            <td>@order.Phone</td>
+                                            <td>
+                                                <div class="">
+                                                    @Html.ActionLink("complete", "Complete", new { id = order.Id }, new { @class = "btn btn-success form-control", @type = "button" })
+                                                    @Html.ActionLink("process", "Process", new { id = order.Id }, new { @class = "btn btn-warning form-control", @type = "button" })
+                                                    @Html.ActionLink("cancel", "Cancel", new { id = order.Id }, new { @class = "btn btn-danger form-control", @type = "button" })
+                                                    @Html.ActionLink("View", "Orderdetails", new { id = order.Id }, new { @class = "btn btn-default form-control", @type = "button" })
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                    <div id="new" class="container tab-pane fade">
+                        new new new
+                        <div class="row">
+
+                            <table class="table table-bordered  ">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var order in Model.Where(o => o.Status == "new"))
+                                    {
+                                        <tr>
+                                            <th scope="row"> @order.Date.ToString("dd MMM yy")</th>
+                                            <td>
+                                                <div class="alert alert-primary" role="alert">
+                                                    @order.Status
+                                                </div>
+                                            </td>
+                                            <td>@order.Address1</td>
+                                            <td>@order.Total</td>
+                                            <td>@order.Phone</td>
+                                            <td>
+                                                <div class="">
+                                                    @Html.ActionLink("complete", "Complete", new { id = order.Id }, new { @class = "btn btn-success form-control", @type = "button" })
+                                                    @Html.ActionLink("process", "Process", new { id = order.Id }, new { @class = "btn btn-warning form-control", @type = "button" })
+                                                    @Html.ActionLink("cancel", "Cancel", new { id = order.Id }, new { @class = "btn btn-danger form-control", @type = "button" })
+                                                    @Html.ActionLink("View", "Orderdetails", new { id = order.Id }, new { @class = "btn btn-default form-control", @type = "button" })
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+        else if (ViewBag.order == false)
+        {
+            <div class="heading">
+                <img class="heading-img" src="images/heading_logo.png" alt="">
+                <h2>Orders</h2>
+                <h5 class="mt-10 mb-30">You have not purchased anything</h5>
+                <p class="mx-w-700x mlr-auto">
+                    Go make a few purchases and then you'll be able to monitor your orders
+                </p>
+            </div>
+        }
+
+        else
+        {
+            <div class="heading">
+                <img class="heading-img" src="~/Content/Images/heading_logo.png" alt="">
+                <h2>My Orders</h2>
+            </div>
+            <div class="row">
+
+                <table class="table table-bordered  ">
+                    <thead>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Model.Where(o => o.CustomerId == (string)TempData["userId"]))
+                        {
+                            <tr>
+                                <th scope="row"> @order.Date.ToString("dd MMM yy")</th>
+                                <td>
+                                    <div class="alert alert-primary" role="alert">
+                                        @order.Status
+                                    </div>
+                                </td>
+                                <td>@order.Address1</td>
+                                <td>@order.Total</td>
+                                <td>@order.Phone</td>
+                                <td>
+                                    <div class="">
+
+                                        @Html.ActionLink("View", "Orderdetails", new { id = order.Id }, new { @class = "btn btn-default form-control", @type = "button" })
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        }
+
+
+
+
+
+    </div><!-- container -->
+
+
+    
+</section>
+

@@ -1,0 +1,124 @@
+﻿@model IEnumerable<burgers2.Models.Message>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+@{
+    ViewBag.Title = "Index";
+}
+
+<  <div class="heading">
+    <img class="heading-img" src="~/Content/Images/heading_logo.png" alt="">
+    <h2>Inbox</h2>
+</div>
+
+<section class="site-section">
+    <div class="container">
+
+
+
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-light btn-lg"><i class="fa fa-trash-o">Delete</i></button>
+                <button type="button" class="btn btn-light btn-lg"><i class="fa fa-refresh"></i> </button>
+            </div>
+
+            <div class="col ">
+                <div class="float-right">
+                    1-50 of 234
+                    <button type="button" class="btn btn-light btn-lg"><i class="fa fa-caret-left"></i> </button>
+                    <button type="button" class="btn btn-light btn-lg  "><i class="fa fa-caret-right"></i> </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+        </div>
+
+        <div class="row">
+            <table class="table table-hover">
+                <tbody>
+                    @foreach (var message in Model)
+                    {
+
+                        <tr>
+                            <th scope="row">
+
+                                <input type="checkbox">
+                            </th>
+                            <td>@message.Subject</td>
+
+                            @if (message.TheMessage.Length > 50)
+                            {
+
+                                <td><a href="@Url.Action("Read", new {id=message.Id })">@message.TheMessage.Substring(0, 50)... </a></td>
+
+                            }
+                            else
+                            {
+                                <td><a href="@Url.Action("Read", new {id=message.Id })">@message.TheMessage</a> </td>
+                            }
+
+
+                            @if (message.Date < DateTime.Today)
+                            {
+                                <td>@message.Date.ToString("dd MMM") </td>
+
+                            }
+                            else
+                            {
+                                <td>@message.Date.ToString("hh:mm")</td>
+                            }
+                        </tr>
+
+
+                    }
+
+
+                    <tr>
+                        <th scope="row">
+                            <input type="checkbox">
+                        </th>
+                        <td>Web Master</td>
+                        <td> The One Sign Your Co-Worker Will Stab</td>
+                        <td>March 3</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">
+                            <input type="checkbox">
+                        </th>
+                        <td>.Net junior</td>
+                        <td>TImprove the search presence of WebSite</td>
+                        <td>April 20</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <input type="checkbox">
+                        </th>
+                        <td>PHPClass</td>
+                        <td>Submit Your Website to the AddMe Business Directory</td>
+                        <td>9:27 AM</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <input type="checkbox">
+                        </th>
+                        <td>Web Master</td>
+                        <td> The One Sign Your Co-Worker Will Stab</td>
+                        <td>March 3</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">
+                            <input type="checkbox">
+                        </th>
+                        <td>.Net junior</td>
+                        <td>TImprove the search presence of WebSite</td>
+                        <td>April 20</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+

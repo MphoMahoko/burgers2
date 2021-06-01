@@ -1,0 +1,99 @@
+﻿@model burgers2.Models.Message
+
+@{
+    ViewBag.Title = "Read";
+}
+
+
+
+<div>
+    <div class="heading">
+        <img class="heading-img" src="~/Content/Images/heading_logo.png" alt="">
+        <h2>Message</h2>
+    </div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TheMessage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TheMessage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink("Back to List", "Index")|
+    <a data-toggle="modal" data-target="#exampleModal">Respond</a>
+</p>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Response</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+          
+                @using (Html.BeginForm("Respond","Messages"))
+                {
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <input name="email" type="hidden" value="@Model.Email">
+                            <input name="subject" type="hidden" value="RE: @Model.Subject">
+                            <textarea class="form-control" rows="5" name="comment"></textarea>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Submit" />
+                      
+                    </div>
+                }
+          
+        </div>
+    </div>
+</div>

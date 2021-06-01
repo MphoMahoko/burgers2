@@ -1,0 +1,63 @@
+﻿@model burgers2.Models.Order
+@{
+    ViewBag.Title = "Orderdetails";
+}
+
+@if (TempData["Alert"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Alert"]
+
+    </div>
+}
+
+
+<div class="heading">
+    <img class="heading-img" src="~/Content/Images/heading_logo.png" alt="">
+    <h2>Order details</h2>
+</div>
+
+
+
+
+
+
+
+
+
+<h4>Order: #@Model.Id  <span class="badge badge-secondary">@Model.Status</span></h4>
+<h5>@Model.Date.ToLongDateString()</h5>
+
+<table class="table">
+    <thead class="thead-dark">
+
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model.OrderDetails)
+        {
+            <tr>
+                <th scope="row"><img src="~/UploadedFiles/@order.Meal.pictureUrl" alt="..." class="img-thumbnail"></th>
+                <td>@order.Meal.Name</td>
+                <td>@order.Quantity</td>
+                <td>@order.TotalPrice</td>
+            </tr>
+        }
+        <tr>
+            <th scope="row"></th>
+            <td></td>
+            <td></td>
+            <td>Order Total: R @Model.Total</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+<a class="btn btn-success" href="@Url.Action("Index")">My Orders</a>

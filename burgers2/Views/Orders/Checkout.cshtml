@@ -1,0 +1,191 @@
+﻿@model burgers2.Models.Order
+
+@{
+    ViewBag.Title = "Checkout";
+}
+
+
+<section class="story-area left-text center-sm-text pos-relative">
+    <div class="abs-tbl bg-2 w-20 z--1 dplay-md-none"></div>
+    <div class="abs-tbr bg-3 w-20 z--1 dplay-md-none"></div>
+    <div class="container">
+        <div class="heading">
+            <img class="heading-img" src="images/heading_logo.png" alt="">
+            <h2>Check Out</h2>
+        </div>
+
+        <!-- checkout -->
+
+        <title>Checkout example for Bootstrap</title>
+        </head>
+
+        <body class="bg-light">
+
+            <div class="container">
+
+
+                <div class="row">
+
+                    <div class="col-md-8 order-md-1">
+                        <h4 class="mb-3">Billing address</h4>
+
+
+                        @using (Html.BeginForm("Checkout", "Orders"))
+                        {
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+
+                                    @Html.LabelFor(m => m.Firstname)
+                                    @Html.TextBoxFor(m => m.Firstname, new { @class = "form-control", required = "" })
+                                    @Html.ValidationMessageFor(m => m.Firstname)
+
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    @Html.LabelFor(m => m.Lastname)
+                                    @Html.TextBoxFor(m => m.Lastname, new { @class = "form-control", required = "" })
+                                    @Html.ValidationMessageFor(m => m.Lastname)
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6 mb-3">
+                                    @Html.LabelFor(m => m.Email)
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", required = "" })
+                                    @Html.ValidationMessageFor(m => m.Email)
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+
+                                @Html.LabelFor(m => m.Address1)
+                                @Html.TextBoxFor(m => m.Address1, new { @class = "form-control", required = "" })
+                                @Html.ValidationMessageFor(m => m.Address1)
+
+                            </div>
+
+                            <div class="mb-3">
+                                @Html.LabelFor(m => m.Address2)
+                                @Html.TextBoxFor(m => m.Address2, new { @class = "form-control", required = "" })
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6 mb-3">
+                                    @Html.LabelFor(m => m.Phone)
+                                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", required = "" })
+                                    @Html.ValidationMessageFor(m => m.Phone)
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+
+                                <div class="col-md-3 mb-3">
+                                    @Html.LabelFor(m => m.Postalcode)
+                                    @Html.TextBoxFor(m => m.Postalcode, new { @class = "form-control", required = "" })
+                                    @Html.ValidationMessageFor(m => m.Postalcode)
+                                </div>
+                            </div>
+                            <hr class="mb-4">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="same-address">
+                                <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="save-info">
+                                <label class="custom-control-label" for="save-info">Save this information for next time</label>
+                            </div>
+                            <hr class="mb-4">
+
+                            <h4 class="mb-3">Payment</h4>
+
+                            <div class="d-block my-3">
+
+                                <div class="custom-control custom-radio">
+                                    <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked>
+                                    <label class="custom-control-label" for="credit">Credit card</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input id="debit" name="paymentMethod" type="radio" class="custom-control-input">
+                                    <label class="custom-control-label" for="debit">Debit card</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input">
+                                    <label class="custom-control-label" for="paypal">Paypal</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="cc-name">Name on card</label>
+                                    <input type="text" class="form-control" id="cc-name" placeholder="" required />
+
+
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="cc-number">Credit card number</label>
+                                    <input type="text" class="form-control" id="cc-number" placeholder="" required>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <label for="cc-expiration">Expiration</label>
+                                    <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="cc-expiration">CVV</label>
+                                    <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+
+                                </div>
+                            </div>
+                            <hr class="mb-4">
+                            <button class="btn-primaryc plr-25">Submit</button>
+
+                        }
+
+                    </div>
+                    <div class="col-md-4 order-md-2 mb-4">
+                        <h4 class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-muted">Your cart</span>
+                            <span class="badge badge-secondary badge-pill">3</span>
+                        </h4>
+                        <ul class="list-group mb-3">
+                            @{
+                                var items = ViewBag.cart.CartItems;
+
+                             }
+                            @foreach (var item in items)
+                            {
+                                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                    <div>
+                                        <h6 class="my-0">@item.Meal.Name<h6>
+                                        <small class="text-muted">Brief description</small>
+                                    </div>
+                                    <span class="text-muted">R @item.Meal.Price</span>
+                                </li>
+                            }
+
+                          
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Total (USD)</span>
+                                <strong>R @ViewBag.cart.Total   </strong>
+                            </li>
+                        </ul>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+            <!-- end of checkout -->
+
+
+    </div><!-- container -->
+</section>

@@ -1,0 +1,137 @@
+﻿@model burgers2.Models.Meal
+
+
+@{
+    ViewBag.Title = "Single";
+}
+
+
+
+
+<section class="story-area left-text center-sm-text pos-relative">
+    <div class="abs-tbl bg-2 w-20 z--1 dplay-md-none"></div>
+    <div class="abs-tbr bg-3 w-20 z--1 dplay-md-none"></div>
+    <div class="container">
+
+        <div class="heading">
+            <div class="heading">
+                <img class="heading-img" src="~/Content/Images/heading_logo.png" alt="">
+                <h2>@Model.Name</h2>
+            </div>
+            <h5 class="mt-10 mb-30">Go on, add to your cart and make an order</h5>
+     
+        </div>
+
+
+
+        <!-- product details -->
+        <div class="row wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+
+            <!--Grid column-->
+            <div class="col-md-6 mb-4">
+
+                <img src="~/UploadedFiles/@Model.pictureUrl" class="img-fluid" alt="">
+
+            </div>
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-md-6 mb-4">
+
+                <!--Content-->
+                <div class="p-4">
+
+                    <div class="mb-3">
+                        <a href="">
+                            <span class="badge purple mr-1">@Model.Category.Name</span>
+                        </a>
+
+                    </div>
+
+                    <p class="lead">
+                        <h4>@Model.Name</h4>
+
+
+                    </p>
+
+                    <p>
+                        @Model.Description
+                    </p>
+
+                    <br />
+
+                    <p class="lead">
+                        <span class="mr-1">
+                            <span>R @Model.Price</span>
+                        </span>
+
+                    </p>
+
+
+
+
+
+
+                    <!-- Default input -->
+                    @*<input type="number" name="count" value="7" aria-label="Search" class="form-control" style="width: 100px">*@
+
+
+
+
+
+                    @if (User.IsInRole("admin"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { Id = Model.Id }, new { @class = "btn btn-warning btn-md my-0 p waves-effect waves-light" })
+
+
+                        if (Model.Deleted == false)
+                        {
+                            @Html.ActionLink("Delete", "Delete", new { Id = Model.Id }, new { @class = "btn btn-danger btn-md my-0 p waves-effect waves-light" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Undelete", "Undelete", new { Id = Model.Id }, new { @class = "btn btn-danger btn-md my-0 p waves-effect waves-light" })
+                        }
+                    }
+                    else
+                    {
+                        using (Html.BeginForm("AddToCart", "ShoppingCart", new { Id = Model.Id }))
+                        {
+
+
+                            <select name="count" class="form-control" style="width: 100px">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+
+                            <br />
+                            <button type="submit" class="btn btn-primary">Add To cart</button>
+
+
+
+                        }
+
+                        @*@Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { Id = Model.Id }, new { @class = "btn btn-primary btn-md my-0 p waves-effect waves-light" })*@
+
+                    }
+
+
+
+
+
+                </div>
+                <!--Content-->
+
+            </div>
+            <!--Grid column-->
+
+        </div>
+
+
+
+        <!-- end of product details -->
+
+
+    </div><!-- container -->
+</section>
